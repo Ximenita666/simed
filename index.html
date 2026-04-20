@@ -3,75 +3,285 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SIMED | Acceso</title>
+  <title>SiMED | Acceso</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap');
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --bg: #f2f5f4; --surface: #fff; --border: #b0cec6;
-      --accent: #00706A; --accent2: #1A3D2A; --danger: #9B2335;
-      --text: #1A1A1A; --muted: #5A6A64;
+      --green-dark: #1A3D2A;
+      --green:      #00706A;
+      --gold:       #D4A020;
+      --danger:     #9B2335;
+      --text:       #1A1A1A;
+      --muted:      #5A6A64;
+      --border:     #d0ddd9;
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: 'Noto Sans', sans-serif; background: var(--bg);
-           display: flex; align-items: center; justify-content: center;
-           min-height: 100vh; }
-    .card {
-      background: var(--surface); border-radius: 12px;
-      box-shadow: 0 4px 24px rgba(0,0,0,.08); padding: 40px 36px;
-      width: 100%; max-width: 360px;
+
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
     }
-    .logo { text-align: center; margin-bottom: 28px; }
-    .logo img { height: 48px; }
-    .logo h1 { font-size: 22px; font-weight: 700; color: var(--accent2); margin-top: 8px; }
-    .logo p  { font-size: 12px; color: var(--muted); margin-top: 2px; }
-    label { display: block; font-size: 12px; font-weight: 600;
-            color: var(--muted); margin-bottom: 4px; text-transform: uppercase; }
-    input {
-      width: 100%; padding: 10px 12px; border: 1.5px solid var(--border);
-      border-radius: 7px; font-size: 14px; font-family: inherit;
-      transition: border-color .2s;
+
+    /* ── PANEL IZQUIERDO ── */
+    .left-panel {
+      width: 46%;
+      background: var(--green-dark);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 40px;
+      position: relative;
+      overflow: hidden;
     }
-    input:focus { outline: none; border-color: var(--accent); }
-    .field { margin-bottom: 16px; }
-    button {
-      width: 100%; padding: 11px; background: var(--accent); color: #fff;
-      border: none; border-radius: 7px; font-size: 14px; font-weight: 600;
-      cursor: pointer; margin-top: 8px; transition: background .2s;
+
+    .left-panel::before {
+      content: '';
+      position: absolute;
+      width: 420px; height: 420px;
+      border-radius: 50%;
+      border: 60px solid rgba(255,255,255,.04);
+      bottom: -120px; right: -120px;
     }
-    button:hover { background: var(--accent2); }
-    button:disabled { background: var(--border); cursor: not-allowed; }
-    .error { color: var(--danger); font-size: 13px; margin-top: 12px;
-             text-align: center; min-height: 20px; }
-    .imss-bar { height: 4px; background: linear-gradient(90deg,#00706A,#1A3D2A);
-                border-radius: 12px 12px 0 0; margin: -40px -36px 32px; }
+    .left-panel::after {
+      content: '';
+      position: absolute;
+      width: 260px; height: 260px;
+      border-radius: 50%;
+      border: 40px solid rgba(255,255,255,.04);
+      top: -80px; left: -60px;
+    }
+
+    .brand { text-align: center; position: relative; z-index: 1; }
+
+    /* SVG logo engrane-grafica */
+    .ciae-logo {
+      width: 110px; height: 110px;
+      margin-bottom: 20px;
+    }
+
+    .brand-name {
+      font-size: 52px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -1px;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .brand-name span { color: var(--gold); }
+
+    .brand-sub {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,.55);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .brand-divider {
+      width: 40px; height: 2px;
+      background: var(--gold);
+      margin: 0 auto 28px;
+    }
+
+    .brand-desc {
+      font-size: 13.5px;
+      color: rgba(255,255,255,.7);
+      line-height: 1.7;
+      text-align: center;
+      max-width: 300px;
+    }
+
+    .brand-footer {
+      position: absolute;
+      bottom: 24px;
+      left: 0; right: 0;
+      text-align: center;
+      font-size: 11px;
+      color: rgba(255,255,255,.3);
+      letter-spacing: .5px;
+    }
+
+    /* ── PANEL DERECHO ── */
+    .right-panel {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 48px 56px;
+      background: #fff;
+    }
+
+    .form-wrap { width: 100%; max-width: 380px; }
+
+    .form-heading {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .form-sub {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+
+    .field { margin-bottom: 18px; }
+    .field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin-bottom: 6px;
+    }
+    .field input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      transition: border-color .2s, box-shadow .2s;
+      background: #fafafa;
+    }
+    .field input:focus {
+      outline: none;
+      border-color: var(--green);
+      background: #fff;
+      box-shadow: 0 0 0 3px rgba(0,112,106,.1);
+    }
+
+    .btn-submit {
+      width: 100%;
+      padding: 13px;
+      background: var(--green-dark);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background .2s, transform .1s;
+      letter-spacing: .3px;
+    }
+    .btn-submit:hover  { background: var(--green); }
+    .btn-submit:active { transform: scale(.99); }
+    .btn-submit:disabled { background: #ccc; cursor: not-allowed; }
+
+    .error-msg {
+      color: var(--danger);
+      font-size: 13px;
+      margin-top: 14px;
+      min-height: 20px;
+      text-align: center;
+    }
+
+    .right-footer {
+      margin-top: 48px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: #aaa;
+    }
+    .right-footer svg { opacity: .5; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      body { flex-direction: column; }
+      .left-panel {
+        width: 100%;
+        padding: 40px 24px 36px;
+      }
+      .brand-name { font-size: 40px; }
+      .right-panel { padding: 36px 24px; }
+      .brand-footer { display: none; }
+    }
   </style>
 </head>
 <body>
-<div class="card">
-  <div class="imss-bar"></div>
-  <div class="logo">
-    <h1>SIMED</h1>
-    <p>CIAE México Poniente · IMSS</p>
+
+<!-- PANEL IZQUIERDO -->
+<div class="left-panel">
+  <div class="brand">
+    <!-- Logo engrane CIAE -->
+    <svg class="ciae-logo" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- Engrane exterior -->
+      <path d="M55 18a37 37 0 100 74A37 37 0 0055 18z" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="2"/>
+      <!-- Dientes del engrane -->
+      <g fill="rgba(212,160,32,.9)">
+        <rect x="51" y="6"  width="8" height="14" rx="2"/>
+        <rect x="51" y="90" width="8" height="14" rx="2"/>
+        <rect x="6"  y="51" width="14" height="8" rx="2"/>
+        <rect x="90" y="51" width="14" height="8" rx="2"/>
+        <!-- diagonales -->
+        <rect x="23" y="15" width="8" height="14" rx="2" transform="rotate(-45 27 22)"/>
+        <rect x="79" y="15" width="8" height="14" rx="2" transform="rotate(45 83 22)"/>
+        <rect x="23" y="79" width="8" height="14" rx="2" transform="rotate(45 27 86)"/>
+        <rect x="79" y="79" width="8" height="14" rx="2" transform="rotate(-45 83 86)"/>
+      </g>
+      <!-- Círculo interior -->
+      <circle cx="55" cy="55" r="32" fill="#1A3D2A" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
+      <!-- Gráfica de barras dentro del engrane -->
+      <rect x="34" y="58" width="7" height="16" rx="1.5" fill="rgba(212,160,32,.7)"/>
+      <rect x="44" y="48" width="7" height="26" rx="1.5" fill="rgba(0,160,150,.9)"/>
+      <rect x="54" y="40" width="7" height="34" rx="1.5" fill="#fff"/>
+      <rect x="64" y="44" width="7" height="30" rx="1.5" fill="rgba(0,160,150,.9)"/>
+      <!-- Línea de tendencia -->
+      <polyline points="37,57 48,46 57,38 67,42" stroke="var(--gold,#D4A020)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <!-- Punto en la línea -->
+      <circle cx="57" cy="38" r="3" fill="#D4A020"/>
+    </svg>
+
+    <div class="brand-name">Si<span>MED</span></div>
+    <div class="brand-sub">Sistema de Monitoreo de Egresos</div>
+    <div class="brand-divider"></div>
+    <div class="brand-desc">
+      Plataforma de análisis y seguimiento de egresos hospitalarios para la <strong style="color:rgba(255,255,255,.9)">CIAE México Poniente · IMSS</strong>
+    </div>
   </div>
-  <form id="form-login">
-    <div class="field">
-      <label for="usuario">Usuario</label>
-      <input id="usuario" type="text" autocomplete="username" required>
+  <div class="brand-footer">IMSS · OOAD México Poniente · v2.0</div>
+</div>
+
+<!-- PANEL DERECHO -->
+<div class="right-panel">
+  <div class="form-wrap">
+    <div class="form-heading">Iniciar sesión</div>
+    <div class="form-sub">Acceso exclusivo para personal autorizado de la CIAE</div>
+
+    <form id="form-login">
+      <div class="field">
+        <label for="usuario">Usuario</label>
+        <input id="usuario" type="text" autocomplete="username" placeholder="usuario" required>
+      </div>
+      <div class="field">
+        <label for="password">Contraseña</label>
+        <input id="password" type="password" autocomplete="current-password" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn-submit" id="btn-login">Entrar al sistema →</button>
+    </form>
+    <div class="error-msg" id="error-msg"></div>
+
+    <div class="right-footer">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="2">
+        <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>
+      </svg>
+      IMSS · CIAE Méx. Poniente &nbsp;·&nbsp; <strong style="color:#888">v2.0</strong>
     </div>
-    <div class="field">
-      <label for="password">Contraseña</label>
-      <input id="password" type="password" autocomplete="current-password" required>
-    </div>
-    <button type="submit" id="btn-login">Ingresar</button>
-  </form>
-  <div class="error" id="error-msg"></div>
+  </div>
 </div>
 
 <script>
-  // Si ya hay sesión activa, ir directo al dashboard
-  if (sessionStorage.getItem('simed_user')) {
-    location.href = '/dashboard.html';
-  }
+  if (sessionStorage.getItem('simed_user')) location.href = '/dashboard.html';
 
   document.getElementById('form-login').addEventListener('submit', async e => {
     e.preventDefault();
@@ -92,13 +302,12 @@
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || 'Error de acceso');
-
       sessionStorage.setItem('simed_user', JSON.stringify(data));
       location.href = '/dashboard.html';
     } catch(ex) {
       err.textContent = ex.message;
       btn.disabled = false;
-      btn.textContent = 'Ingresar';
+      btn.textContent = 'Entrar al sistema →';
     }
   });
 </script>

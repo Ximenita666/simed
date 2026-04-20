@@ -1292,49 +1292,23 @@
       });
     </script>
     <div id="source-panel">
-
-      <!-- TABS: BD / Archivo -->
-      <div style="display:flex;gap:4px;margin-bottom:16px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:4px;width:fit-content;">
-        <button id="tab-db"   class="src-tab src-tab-active" onclick="switchSource('db')">Base de Datos</button>
-        <button id="tab-file" class="src-tab"                onclick="switchSource('file')">Archivo Excel</button>
-      </div>
-
-      <!-- PANEL BD -->
-      <div id="panel-db" style="display:block;">
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;max-width:560px;">
-          <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:14px;">
-            Cargar datos desde la base de datos
-          </div>
-          <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;">
-            <div>
-              <label style="display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px;">Fecha inicio</label>
-              <input type="date" id="db-fi" class="select-field" style="min-width:140px;">
-            </div>
-            <div>
-              <label style="display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px;">Fecha fin</label>
-              <input type="date" id="db-ff" class="select-field" style="min-width:140px;">
-            </div>
-            <button class="btn btn-primary" onclick="loadFromDB()" id="btn-load-db">Cargar →</button>
-          </div>
-          <div id="db-status" style="margin-top:12px;font-size:12px;color:var(--muted);min-height:18px;"></div>
+      <div style="background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:20px 24px;max-width:560px;">
+        <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:14px;">
+          Cargar datos desde la base de datos
         </div>
-      </div>
-
-      <!-- PANEL ARCHIVO -->
-      <div id="panel-file" style="display:none;">
-        <div style="display:flex;justify-content:flex-start;">
-          <div class="upload-zone" id="zone-egresos"
-              ondragover="dragOver(event,'zone-egresos')" ondragleave="dragLeave('zone-egresos')"
-              ondrop="dropFile(event,'egresos')">
-            <input type="file" accept=".xlsx,.xls,.csv" onchange="loadFile(event,'egresos')">
-            <div class="upload-icon">📂</div>
-            <div class="upload-label">Cargar Reporte de Egresos</div>
-            <div class="upload-hint">Reporte_Egresos.xlsx – arrastra aquí o haz clic</div>
-            <div class="upload-status" id="status-egresos">Esperando archivo...</div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;">
+          <div>
+            <label style="display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px;">Fecha inicio</label>
+            <input type="date" id="db-fi" class="select-field" style="min-width:140px;">
           </div>
+          <div>
+            <label style="display:block;font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.7px;margin-bottom:5px;">Fecha fin</label>
+            <input type="date" id="db-ff" class="select-field" style="min-width:140px;">
+          </div>
+          <button class="btn btn-primary" onclick="loadFromDB()" id="btn-load-db">Cargar →</button>
         </div>
+        <div id="db-status" style="margin-top:12px;font-size:12px;color:var(--muted);min-height:18px;"></div>
       </div>
-
     </div><!-- /source-panel -->
     </details><!-- /source-panel-details -->
 
