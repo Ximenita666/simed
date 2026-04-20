@@ -213,33 +213,71 @@
 <!-- PANEL IZQUIERDO -->
 <div class="left-panel">
   <div class="brand">
-    <!-- Logo engrane CIAE -->
-    <svg class="ciae-logo" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Engrane exterior -->
-      <path d="M55 18a37 37 0 100 74A37 37 0 0055 18z" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="2"/>
-      <!-- Dientes del engrane -->
-      <g fill="rgba(212,160,32,.9)">
-        <rect x="51" y="6"  width="8" height="14" rx="2"/>
-        <rect x="51" y="90" width="8" height="14" rx="2"/>
-        <rect x="6"  y="51" width="14" height="8" rx="2"/>
-        <rect x="90" y="51" width="14" height="8" rx="2"/>
-        <!-- diagonales -->
-        <rect x="23" y="15" width="8" height="14" rx="2" transform="rotate(-45 27 22)"/>
-        <rect x="79" y="15" width="8" height="14" rx="2" transform="rotate(45 83 22)"/>
-        <rect x="23" y="79" width="8" height="14" rx="2" transform="rotate(45 27 86)"/>
-        <rect x="79" y="79" width="8" height="14" rx="2" transform="rotate(-45 83 86)"/>
+    <!-- Logo CIAE México Poniente -->
+    <svg class="ciae-logo" viewBox="0 0 120 130" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="gearGrad" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%"   stop-color="#1A4A5C"/>
+          <stop offset="100%" stop-color="#00B4A0"/>
+        </linearGradient>
+        <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#1A4A5C"/>
+          <stop offset="100%" stop-color="#00C4B0"/>
+        </linearGradient>
+        <clipPath id="circleClip">
+          <circle cx="60" cy="58" r="34"/>
+        </clipPath>
+      </defs>
+
+      <!-- Dientes del engrane (12 dientes) -->
+      <g fill="url(#gearGrad)">
+        <rect x="56" y="4"  width="8" height="13" rx="2.5" transform="rotate(0 60 58)"/>
+        <rect x="56" y="4"  width="8" height="13" rx="2.5" transform="rotate(30 60 58)"/>
+        <rect x="56" y="4"  width="8" height="13" rx="2.5" transform="rotate(60 60 58)"/>
+        <rect x="56" y="4"  width="8" height="13" rx="2.5" transform="rotate(90 60 58)"/>
+        <rect x="56" y="4"  width="8" height="13" rx="2.5" transform="rotate(120 60 58)"/>
+        <rect x="56" y="4"  width="8" height="13" rx="2.5" transform="rotate(150 60 58)"/>
+        <rect x="56" y="4"  width="8" height="13" rx="2.5" transform="rotate(180 60 58)"/>
+        <rect x="56" y="4"  width="8" height="13" rx="2.5" transform="rotate(210 60 58)"/>
+        <rect x="56" y="4"  width="8" height="13" rx="2.5" transform="rotate(240 60 58)"/>
+        <rect x="56" y="4"  width="8" height="13" rx="2.5" transform="rotate(270 60 58)"/>
+        <rect x="56" y="4"  width="8" height="13" rx="2.5" transform="rotate(300 60 58)"/>
+        <rect x="56" y="4"  width="8" height="13" rx="2.5" transform="rotate(330 60 58)"/>
       </g>
-      <!-- Círculo interior -->
-      <circle cx="55" cy="55" r="32" fill="#1A3D2A" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
-      <!-- Gráfica de barras dentro del engrane -->
-      <rect x="34" y="58" width="7" height="16" rx="1.5" fill="rgba(212,160,32,.7)"/>
-      <rect x="44" y="48" width="7" height="26" rx="1.5" fill="rgba(0,160,150,.9)"/>
-      <rect x="54" y="40" width="7" height="34" rx="1.5" fill="#fff"/>
-      <rect x="64" y="44" width="7" height="30" rx="1.5" fill="rgba(0,160,150,.9)"/>
+
+      <!-- Anillo del engrane -->
+      <circle cx="60" cy="58" r="42" fill="none" stroke="url(#gearGrad)" stroke-width="8"/>
+      <circle cx="60" cy="58" r="34" fill="none" stroke="url(#gearGrad)" stroke-width="1"/>
+
+      <!-- Barras internas (clipeadas al círculo) -->
+      <g clip-path="url(#circleClip)" fill="url(#barGrad)">
+        <rect x="25" y="60" width="9" height="32" rx="1.5"/>
+        <rect x="37" y="52" width="9" height="40" rx="1.5"/>
+        <rect x="49" y="44" width="9" height="48" rx="1.5"/>
+        <rect x="61" y="38" width="9" height="54" rx="1.5"/>
+        <rect x="73" y="46" width="9" height="46" rx="1.5"/>
+        <rect x="85" y="42" width="9" height="50" rx="1.5"/>
+      </g>
+
       <!-- Línea de tendencia -->
-      <polyline points="37,57 48,46 57,38 67,42" stroke="var(--gold,#D4A020)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-      <!-- Punto en la línea -->
-      <circle cx="57" cy="38" r="3" fill="#D4A020"/>
+      <polyline points="29,60 42,50 53,42 65,36 77,44 90,40"
+        stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"
+        clip-path="url(#circleClip)"/>
+      <!-- Puntos en la línea -->
+      <g fill="white" clip-path="url(#circleClip)">
+        <circle cx="29" cy="60" r="3"/>
+        <circle cx="42" cy="50" r="3"/>
+        <circle cx="53" cy="42" r="3"/>
+        <circle cx="65" cy="36" r="3"/>
+        <circle cx="77" cy="44" r="3"/>
+        <circle cx="90" cy="40" r="3"/>
+      </g>
+
+      <!-- Texto CIAE debajo -->
+      <text x="60" y="116" text-anchor="middle" font-family="Noto Sans, sans-serif"
+            font-weight="300" font-size="13" letter-spacing="5" fill="rgba(255,255,255,.7)">CIAE</text>
+      <text x="60" y="128" text-anchor="middle" font-family="Noto Sans, sans-serif"
+            font-weight="300" font-size="8" letter-spacing="3" fill="rgba(255,255,255,.45)">MÉXICO PONIENTE</text>
     </svg>
 
     <div class="brand-name">Si<span>MED</span></div>
