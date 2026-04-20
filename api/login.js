@@ -2,7 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_KEY  // service_role para leer usuarios
+  process.env.SUPABASE_SERVICE_KEY
 );
 
 export default async function handler(req, res) {
@@ -15,20 +15,30 @@ export default async function handler(req, res) {
   const { usuario, password } = req.body || {};
   if (!usuario || !password) return res.status(400).json({ error: 'Credenciales requeridas' });
 
-  const { data, error } = await supabase
+  // Buscar usuario sin join para evitar problemas de FK
+  const { data: user, error: userErr } = await supabase
     .from('usuarios')
-    .select('id_user, nameuser, privilegios, id_unidad, unidades(iniciales_u)')
+    .select('id_user, nameuser, privilegios, id_unidad, usuario, password')
     .eq('usuario', usuario)
     .eq('password', password)
     .single();
 
-  if (error || !data) return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
+  if (userErr || !user) {
+    return res.status(401).json({ error: 'Usuario o contraseña incorrectos', debug: userErr?.message });
+  }
+
+  // Buscar iniciales de la unidad por separado
+  const { data: unidad } = await supabase
+    .from('unidades')
+    .select('iniciales_u')
+    .eq('id_unidad', user.id_unidad)
+    .single();
 
   return res.status(200).json({
-    id_user:    data.id_user,
-    nameuser:   data.nameuser,
-    privilegios: data.privilegios,
-    id_unidad:  data.id_unidad,
-    iniciales_u: data.unidades?.iniciales_u ?? ''
+    id_user:     user.id_user,
+    nameuser:    user.nameuser,
+    privilegios: user.privilegios,
+    id_unidad:   user.id_unidad,
+    iniciales_u: unidad?.iniciales_u ?? ''
   });
 }
