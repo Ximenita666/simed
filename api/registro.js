@@ -1,11 +1,11 @@
-import { createClient } from '@supabase/supabase-js';
+const { createClient } = require('@supabase/supabase-js');
 
 const supabase = createClient(
   process.env.SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_KEY  // service_role para insertar
+  process.env.SUPABASE_SERVICE_KEY
 );
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -26,4 +26,4 @@ export default async function handler(req, res) {
   if (error) return res.status(500).json({ error: error.message });
 
   return res.status(201).json({ success: true, id_registro: data.id_registro });
-}
+};
